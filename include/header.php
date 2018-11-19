@@ -4,6 +4,7 @@
         <?php 
         if (isset($_SESSION['username'])) {
             echo '<a href="profile.php" class="user-profile">User Profile</a>';
+            echo '<a href="users.php" class="user-profile">Users</a>';
         } else {}
         ?>
     </h3>

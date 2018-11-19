@@ -17,54 +17,28 @@
     <main>
         <h1>Main Page</h1>
 <?php
-unset($_SESSION['loginfailed']);
+unset($_SESSION['loginfailed']); 
+//if after a failed login the user navigates away from the login page then back, this clears the 'login failed' message on he login page
 
-if (isset($_SESSION['username'])) {
-    echo '<h3>List of registered users:</h3>';
-    include('include/db-config.php');
-    $sql = 'select username from users';
-    $result = mysqli_query($connection, $sql);
-    $usernames = [];
-    foreach($result as $key => $val) {
-        foreach($val as $key => $val2) {
-            array_push($usernames, $val2);
-        }
-    }
-    $sql = 'select email from users';
-    $result = mysqli_query($connection, $sql);
-    $emails = [];
-    foreach($result as $key => $val) {
-        foreach($val as $key => $val2) {
-            array_push($emails, $val2);
-        }
-    }
-    ?>
-    <table class="users-table">
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-        </tr>
-    <?php 
-        for ($i=0; $i < sizeof($usernames); $i++) { 
-            echo '
-                <tr>
-                    <td>
-            ';
-            echo $usernames[$i];
-            echo '</td><td>';
-            echo $emails[$i];
-            echo '
-                    </td>
-                </tr>
-            ';
-            
-        }
-        echo '</table>';
-    
-} else {
-    echo 'Only logged in users have access.';
-}
+
 ?>
+    <!-- Start post template -->
+
+    <div class="post">
+        <div class="post-header">
+            <span class="post-title">Post Title</span>
+            <span class="post-poster">Poster</span>
+            <p class="post-date">2018-11-19</p>
+        </div>
+        
+        <hr>
+        <div class="post-body">
+            <p>Post text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis in architecto quod molestiae, fugit voluptatibus tempore pariatur adipisci ducimus perferendis?</p>
+        </div>
+    </div>
+
+    <!-- End of post template -->
+
     </main>
 </body>
 </html>
