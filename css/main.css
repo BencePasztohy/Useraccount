@@ -1,0 +1,104 @@
+* {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1 {
+    font-size: 2rem;
+}
+header {
+    /* width: 100%; */
+    /* height: 2rem; */
+    background: rgb(20, 114, 255);
+    padding: 0.2rem;
+    margin-bottom: 3rem;
+    
+}
+.main-link {
+    margin-left: 3rem;
+    /* width: 200px; */
+}
+.user-profile {
+    margin-left: 2rem;
+}
+.user-info {    
+    float: right;
+    margin-right: 3rem;
+    margin-top: -3.4rem;
+    /* border: 1px solid red; */
+}
+.user-info a:link, .user-info a:visited {
+    margin-left: 2rem;
+    color: white;
+    text-decoration: none;
+}
+
+.main-link a:link, .main-link a:visited {
+    color: white;
+    text-decoration: none;
+}
+.main-link a:hover, .user-info a:hover {
+    color:rgb(185, 213, 255);
+}
+main {
+    width: 80%;
+    margin: auto auto;
+}
+input[type=text], input[type=password] {
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+    padding: 0.2rem;
+}
+input[type=text]:hover, input[type=password]:hover {
+    background: rgb(245, 245, 245);
+}
+input[type=text]:focus, input[type=password]:focus {
+    background: rgb(245, 245, 245);
+}
+.input-text {
+    margin-bottom: 0.2rem;
+    color: rgb(104, 104, 104);
+}
+.button {
+    margin-top: 1rem;
+    background-color: rgb(20, 114, 255);
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    color: white;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+}
+.button:hover, button:focus {
+    background-color: rgb(13, 98, 224);
+}
+.button:active {
+    background-color: rgb(10, 64, 146);
+}
+.error-messages {
+    margin-bottom: 0.1rem;
+}
+.error {
+    color: red;
+}
+.delete-profile-link {
+    color: rgb(71, 141, 245);
+    text-decoration: none;
+}
+.delete-profile-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.show-pwd {
+    color: rgb(180, 180, 180);
+    margin-left: 0.5rem;
+}
+.show-pwd:hover {
+    color: rgb(173, 173, 173);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.users-table td, .users-table th {
+    width: 200px;
+    /* height: 2rem; */
+    background: rgb(250, 250, 250);
+    padding: 0.4rem;
+}
