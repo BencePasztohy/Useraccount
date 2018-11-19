@@ -20,11 +20,36 @@
 unset($_SESSION['loginfailed']); 
 //if after a failed login the user navigates away from the login page then back, this clears the 'login failed' message on he login page
 
+include('include/db-config.php');
+$sql = "select title, text, poster, date from posts order by date desc";
+$result = mysqli_query($connection, $sql);
+$posts = [];
+foreach($result as $key => $val) {
+    array_push($posts, $val);
+}
+foreach($posts as $key => $val) {
+    echo '<div class="post">
+        <div class="post-header">
+            <span class="post-title">' . $val["title"] . '</span>
+            <span class="post-poster">' . $val["poster"] . '</span>
+            <p class="post-date">' . $val["date"] . '</p>
+        </div>
+        
+        <hr>
+        <div class="post-body">
+            <p>' . $val["text"] . '</p>
+        </div>
+    </div>';
+}
+
+
+    
 
 ?>
-    <!-- Start post template -->
 
-    <div class="post">
+    <!-- Start of post template -->
+
+    <!-- <div class="post">
         <div class="post-header">
             <span class="post-title">Post Title</span>
             <span class="post-poster">Poster</span>
@@ -35,7 +60,7 @@ unset($_SESSION['loginfailed']);
         <div class="post-body">
             <p>Post text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis in architecto quod molestiae, fugit voluptatibus tempore pariatur adipisci ducimus perferendis?</p>
         </div>
-    </div>
+    </div> -->
 
     <!-- End of post template -->
 
