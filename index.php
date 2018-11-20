@@ -50,7 +50,7 @@
 unset($_SESSION['loginfailed']); 
 //if after a failed login the user navigates away from the login page then back, this clears the 'login failed' message on he login page
 
-$sql = "select title, text, poster, date from posts order by date desc";
+$sql = "select id, title, text, poster, date from posts order by date desc";
 $result = mysqli_query($connection, $sql);
 $posts = [];
 foreach($result as $key => $val) {
@@ -59,13 +59,18 @@ foreach($result as $key => $val) {
 foreach($posts as $key => $val) {
     if ($val['date']) {
         $display_date = substr($val['date'], 0, 10);
-        //in the database the date it stored to the second, but php will only display it to the day to make it look clearer
+        //in the database the date it stored to the second, but php will only display it to the day to make it look cleaner on the page
     }
     echo '<div class="post">
         <div class="post-header">
-            <span class="post-title">' . $val["title"] . '</span>
-            <span class="post-poster">' . $val["poster"] . '</span>
-            <p class="post-date">' . $display_date . '</p>
+            <div class="title-and-delete">
+                <span class="post-title">' . $val["title"] . '</span>';
+                if (isset($_SESSION['username']) && $val['poster'] == $_SESSION['username']) echo '<span id="post-delete" onClick="deletePost(' . $val["id"] . ')">delete</span>';
+            echo '</div>
+            <div class="date-and-poster">
+                <span class="post-poster">' . $val["poster"] . '</span>
+                <span class="post-date">' . $display_date . '</span>
+            </div>
         </div>
         
         <hr>
@@ -80,9 +85,14 @@ foreach($posts as $key => $val) {
 
     <!-- <div class="post">
         <div class="post-header">
-            <span class="post-title">Template Post Title</span>
-            <span class="post-poster">Template Poster</span>
-            <p class="post-date">Template 2018-11-19</p>
+            <div class="title-and-delete">
+                <span class="post-title">Template Post Title</span>
+                <span id="post-delete">delete</span>
+            </div>
+            <div class="date-and-poster">
+                <span class="post-poster">Template Poster</span>
+                <span class="post-date">Template 2018-11-19</span>
+            </div>
         </div>
         
         <hr>
@@ -94,5 +104,6 @@ foreach($posts as $key => $val) {
     <!-- End of post template -->
 
     </main>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 function deleteProfile() {
     if (confirm('Delete profile?')) {
-        location.replace('delete_profile.php');
+        location.replace('delete-profile.php');
     }
 }
 let show = false;
@@ -13,5 +13,21 @@ function showPwd(realPwd, hiddenPwd) {
         document.getElementById('hidden-pwd').innerHTML = hiddenPwd;
         document.getElementById('show-pwd').innerHTML = 'show';
         show = false;
+    }
+}
+function deletePost(id) {
+    if (confirm('Delete post?')) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == 'deleted') {
+                    location.reload();
+                } else {
+                    alert('Failed to delete post.');
+                }
+            }
+        };
+        xmlhttp.open('GET', 'delete-post.php?id=' + id, true);
+        xmlhttp.send();
     }
 }

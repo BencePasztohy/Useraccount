@@ -114,9 +114,20 @@ input[type=text]:focus, input[type=password]:focus {
     font-size: 1.4rem;
     font-weight: 600;
 }
+.title-and-delete, .date-and-poster {
+    padding-bottom: 0.5rem;
+}
 .post-poster {
     float: right;
-    margin-top: 0.5rem;
+    /* margin-top: 2rem; */
+}
+#post-delete {
+    float: right;
+    color: rgb(170, 170, 170);
+}
+#post-delete:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 .post-date {
     margin-top: 0.4rem;
