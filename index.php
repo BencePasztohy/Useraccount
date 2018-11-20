@@ -22,8 +22,8 @@
         <div class="post-writer">
             <span class="post-writer-title">Write post</span>
             <form action="index.php" method="post">
-                <input type="text" name="title" class="post-writer-field">
-                <textarea name="post" cols="62" rows="2" maxlength="1024" class="post-writer-field"></textarea>
+                <input type="text" name="title" class="post-writer-field" required>
+                <textarea name="post" cols="62" rows="2" maxlength="1024" class="post-writer-field" required></textarea>
                 <input type="submit" value="Post" class="button submit-post">
             </form>
         <?php } ?>
@@ -32,8 +32,7 @@
             $title = input_trimmer($_POST['title']);
             $text = input_trimmer($_POST['post']);
             $poster = $_SESSION['username'];
-            $date = date("Y\-m\-j\-G\:i\:s"); //saves the current date as YYYY-MM-DD-HH:MM:SS
-            echo $date;
+            $date = date("Y\-m\-j\-G\-i\-s"); //saves the current date as YYYY-MM-DD-HH-MM-SS
             $sql = "insert into posts (title, text, poster, date) values ('$title', '$text', '$poster', '$date')";
             if($connection->query($sql) === TRUE) {
                 header('Location: index.php');
@@ -95,6 +94,5 @@ foreach($posts as $key => $val) {
     <!-- End of post template -->
 
     </main>
-    <script src="js/validate.js"></script>
 </body>
 </html>
