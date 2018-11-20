@@ -12,45 +12,15 @@
     <?php 
         session_start();
         include('include/header.php'); 
-        include('include/db-config.php');
-        include('include/input-trimmer.php');
         ?>
     </header>
     <main>
         <h1>Main Page</h1>
-        <?php if(isset($_SESSION['username'])) { ?>
-        <div class="post-writer">
-            <span class="post-writer-title">Write post</span>
-            <form action="index.php" method="post">
-                <input type="text" name="title" class="post-writer-field">
-                <textarea name="post" cols="62" rows="2" maxlength="1024" class="post-writer-field"></textarea>
-                <input type="submit" value="Post" class="button submit-post">
-            </form>
-        <?php } ?>
-        <?php
-        if(isset($_POST['post'])) {
-            $title = input_trimmer($_POST['title']);
-            $text = input_trimmer($_POST['post']);
-            $poster = $_SESSION['username'];
-            $date = date("Y\-m\-j\-G\:i\:s"); //saves the current date as YYYY-MM-DD-HH:MM:SS
-            echo $date;
-            $sql = "insert into posts (title, text, poster, date) values ('$title', '$text', '$poster', '$date')";
-            if($connection->query($sql) === TRUE) {
-                header('Location: index.php');
-            } else {
-                //do nothing
-            }
-         
-        } else {
-            //do nothing
-        }
-        ?>
-        </div>
-        
 <?php
 unset($_SESSION['loginfailed']); 
 //if after a failed login the user navigates away from the login page then back, this clears the 'login failed' message on he login page
 
+include('include/db-config.php');
 $sql = "select title, text, poster, date from posts order by date desc";
 $result = mysqli_query($connection, $sql);
 $posts = [];
@@ -58,15 +28,11 @@ foreach($result as $key => $val) {
     array_push($posts, $val);
 }
 foreach($posts as $key => $val) {
-    if ($val['date']) {
-        $display_date = substr($val['date'], 0, 10);
-        //in the database the date it stored to the second, but php will only display it to the day to make it look clearer
-    }
     echo '<div class="post">
         <div class="post-header">
             <span class="post-title">' . $val["title"] . '</span>
             <span class="post-poster">' . $val["poster"] . '</span>
-            <p class="post-date">' . $display_date . '</p>
+            <p class="post-date">' . $val["date"] . '</p>
         </div>
         
         <hr>
@@ -95,6 +61,5 @@ foreach($posts as $key => $val) {
     <!-- End of post template -->
 
     </main>
-    <script src="js/validate.js"></script>
 </body>
 </html>
