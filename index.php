@@ -23,22 +23,35 @@
             <span class="post-writer-title">Write post</span>
             <form action="index.php" method="post">
                 <input type="text" name="title" class="post-writer-field" required>
-                <textarea name="post" cols="62" rows="2" maxlength="1024" class="post-writer-field" required></textarea>
+                <!-- <textarea name="post" cols="62" rows="2" maxlength="1024" class="post-writer-field" required></textarea> -->
+                <textarea name="post" rows="2" maxlength="1024" class="post-writer-field" required></textarea>
                 <input type="submit" value="Post" class="button submit-post">
             </form>
         <?php } ?>
         <?php
         if(isset($_POST['post'])) {
             $title = input_trimmer($_POST['title']);
+            $temp_title = trim($title, ' ');
             $text = input_trimmer($_POST['post']);
-            $poster = $_SESSION['username'];
-            $date = date("Y\-m\-j\-G\-i\-s"); //saves the current date as YYYY-MM-DD-HH-MM-SS
-            $sql = "insert into posts (title, text, poster, date) values ('$title', '$text', '$poster', '$date')";
-            if($connection->query($sql) === TRUE) {
+            $temp_text = trim($text, ' ');
+            if ($temp_title == '') {
+                unset($_POST['title']);
+                header('Location: index.php');
+            } else if ($temp_text == '') {
+                unset($_POST['post']);
                 header('Location: index.php');
             } else {
-                //do nothing
+                $poster = $_SESSION['username'];
+                $date = date("Y\-m\-j\-G\-i\-s"); //saves the current date as YYYY-MM-DD-HH-MM-SS
+                $sql = "insert into posts (title, text, poster, date) values ('$title', '$text', '$poster', '$date')";
+                if($connection->query($sql) === TRUE) {
+                    header('Location: index.php');
+                    //this reloads the page and clears all $_POST variables
+                } else {
+                    //do nothing
+                }
             }
+            
          
         } else {
             //do nothing
@@ -66,6 +79,7 @@ foreach($posts as $key => $val) {
             <div class="title-and-delete">
                 <span class="post-title">' . $val["title"] . '</span>';
                 if (isset($_SESSION['username']) && $val['poster'] == $_SESSION['username']) echo '<span id="post-delete" onClick="deletePost(' . $val["id"] . ')">delete</span>';
+                //only display delete button if loggen in and logged in user wrote the post
             echo '</div>
             <div class="date-and-poster">
                 <span class="post-poster">' . $val["poster"] . '</span>
@@ -97,7 +111,7 @@ foreach($posts as $key => $val) {
         
         <hr>
         <div class="post-body">
-            <p>Template Post text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis in architecto quod molestiae, fugit voluptatibus tempore pariatur adipisci ducimus perferendis?</p>
+            <p>Template Post text. </p>
         </div>
     </div> -->
 

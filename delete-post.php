@@ -5,5 +5,5 @@ $id = input_trimmer($_GET['id']);
 $sql = "delete from posts where id ='$id'";
 if ($connection->query($sql) === TRUE) {
     echo 'deleted';
-} else echo 'error';
+} else echo 'database connection error';
 ?>

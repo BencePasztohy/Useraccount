@@ -11,7 +11,6 @@ header {
     background: rgb(20, 114, 255);
     padding: 0.2rem;
     margin-bottom: 3rem;
-    
 }
 .main-link {
     margin-left: 3rem;
@@ -31,7 +30,6 @@ header {
     color: white;
     text-decoration: none;
 }
-
 .main-link a:link, .main-link a:visited {
     color: white;
     text-decoration: none;
@@ -42,6 +40,13 @@ header {
 main {
     width: 80%;
     margin: auto auto;
+}
+.flexbox {
+    display: flex;
+}
+.right {
+    margin-left: 20%;
+    width: 40rem;
 }
 input[type=text], input[type=password] {
     border-radius: 0.2rem;
@@ -105,7 +110,7 @@ input[type=text]:focus, input[type=password]:focus {
 .post {
     background: rgb(250, 250, 250);
     padding: 1rem;
-    width: 60%;
+    max-width: 40rem;
     border: 1px solid rgb(250, 250, 250);
     border-radius: 10px;
     margin-bottom: 2rem;
@@ -142,11 +147,11 @@ input[type=text]:focus, input[type=password]:focus {
     background: rgb(250, 250, 250);
     /* border: 1px solid rgb(194, 194, 194); */
     border: 1px solid rgb(216, 216, 216);
-    
     border-radius: 5px;
     margin-bottom: 2rem;
-    padding: 1rem;
-    width: 60%;
+    padding: 1rem 2rem 1rem 1rem;
+    /*2rem is so the textarea appears centered. for some reason it doesn't respect the 1rem uniform padding*/
+    max-width: 39rem;
 }
 .post-writer-title {
     margin-left: 0.5rem;
@@ -154,12 +159,14 @@ input[type=text]:focus, input[type=password]:focus {
     font-weight: 600;
 }
 .post-writer textarea {
+    box-sizing: border-box;
+    flex: 1;
     margin: 1rem 0.5rem 0.5rem 0.5rem;
     resize: none;
     border: 1px solid rgb(236, 236, 236);
     border-radius: 5px;
     padding: 0.2rem;
-    /* transition: all 0.2s; */
+    width: 100%;
 }
 .post-writer textarea:hover {
     border: 1px solid rgb(146, 146, 146);
@@ -173,7 +180,6 @@ input[type=text]:focus, input[type=password]:focus {
     border: 1px solid rgb(236, 236, 236);
     border-radius: 5px;
     padding: 0.2rem;
-    /* transition: all 0.2s; */
 }
 .post-writer input[type=text]:hover {
     border: 1px solid rgb(146, 146, 146);
@@ -182,6 +188,25 @@ input[type=text]:focus, input[type=password]:focus {
     border: 1px solid rgb(146, 146, 146);
 } 
 .submit-post {
-    float: right;
+    /* float: right; */
     /* transition: all 0.2s; */
+    margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 900px) {
+    main {
+        width: auto;
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+    .right {
+        margin-left: 5%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    main {
+        width: auto;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
