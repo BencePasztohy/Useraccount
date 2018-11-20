@@ -22,9 +22,16 @@
         <div class="post-writer">
             <span class="post-writer-title">Write post</span>
             <form action="index.php" method="post">
-                <input type="text" name="title" class="post-writer-field" required>
-                <!-- <textarea name="post" cols="62" rows="2" maxlength="1024" class="post-writer-field" required></textarea> -->
-                <textarea name="post" rows="2" maxlength="1024" class="post-writer-field" required></textarea>
+                <div class="title-div">
+                    <!-- <input type="text" name="title" class="post-writer-field" id="title-input" required> -->
+                    <textarea name="title" rows="1" maxlength="512" class="post-writer-field" id="title-input" required></textarea>
+                    <p id="title-counter"></p>
+                </div>
+                <div class="text-div">
+                    <textarea name="post" rows="2" maxlength="1024" class="post-writer-field" id="text-input" required></textarea>
+                    <p id="post-counter"></p>
+                </div>
+                
                 <input type="submit" value="Post" class="button submit-post">
             </form>
         <?php } ?>

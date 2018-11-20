@@ -31,3 +31,18 @@ function deletePost(id) {
         xmlhttp.send();
     }
 }
+let titleCounter = document.getElementById('title-counter');
+titleCounter.innerHTML = '0/512';
+let titleCounterField = (document.getElementById(
+    'title-input'
+).onkeyup = function() {
+    titleCounter.innerHTML = this.value.length + '/512';
+});
+
+let postCounter = document.getElementById('post-counter');
+postCounter.innerHTML = '0/1024';
+let textCounterField = (document.getElementById(
+    'text-input'
+).onkeyup = function() {
+    postCounter.innerHTML = this.value.length + '/1024';
+});
